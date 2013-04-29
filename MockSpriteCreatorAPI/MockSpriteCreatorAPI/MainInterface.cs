@@ -33,27 +33,29 @@ namespace MockSpriteCreatorAPI
 {
     internal class MainInterface
     {
-        public static string GenerateSprite(string spriteName, int width, int height)
+        public static string GenerateSprite(Sprite sprite)
         {
             // Check Preconditions
-            Contract.Requires(spriteName != null);
-            Contract.Requires(width > 0);
-            Contract.Requires(height > 0);
+            Contract.Requires(sprite.SpriteName != null);
+            Contract.Requires(sprite.SpriteWidth > 0);
+            Contract.Requires(sprite.SpriteHeight > 0);
 
             //TODO: Generate filename based on parameters
             //TODO: Check if file with filename already exists
 
-            string spriteString = string.Format("{0}\n{1}x{2}", spriteName, width, height);
+            string spriteString = string.Format("{0}\n{1}x{2}", sprite.SpriteName,
+                sprite.SpriteWidth, sprite.SpriteHeight);
             Font font = new Font("Courier", 12, FontStyle.Bold, GraphicsUnit.Point);
 
-            int distanceFromLeft = (width / 2) - (spriteString.Length * 10 / 2);
-            int distanceFromTop = (height / 2) - font.Height / 2;
+            int distanceFromLeft = (sprite.SpriteWidth / 2) - (spriteString.Length * 10 / 2);
+            int distanceFromTop = (sprite.SpriteHeight / 2) - font.Height / 2;
 
-            Bitmap generatedSprite = new Bitmap(width, height);
+            Bitmap generatedSprite = new Bitmap(sprite.SpriteWidth, sprite.SpriteHeight);
             Graphics graphicsObject = Graphics.FromImage(generatedSprite);
             graphicsObject.Clear(Color.CornflowerBlue); //TODO: Allow changing this
             graphicsObject.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
-            graphicsObject.DrawString(spriteString, font, new SolidBrush(Color.Black), distanceFromLeft, distanceFromTop);
+            graphicsObject.DrawString(spriteString, font, new SolidBrush(Color.Black),
+                distanceFromLeft, distanceFromTop);
             graphicsObject.Flush();
             string folderPath = System.IO.Directory.CreateDirectory(@"C:\Images").FullName; //TODO: Change to relative folder
             string absolutePath = folderPath + @"\test.png"; //TODO: Set name based on parameters
@@ -63,7 +65,8 @@ namespace MockSpriteCreatorAPI
 
         private static void Main(string[] args)
         {
-            Console.WriteLine("Sprite created at: " + GenerateSprite("Test", 300, 300) + ".\nPress any key to exit.");
+            Console.WriteLine("Sprite created at: " + GenerateSprite(new Sprite("Test Sprite", 300, 300)) +
+                ".\nPress any key to exit.");
             // Keep console open in debug mode
             Console.ReadKey();
         }

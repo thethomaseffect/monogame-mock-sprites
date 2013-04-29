@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MockSpriteCreatorAPI", "MockSpriteCreatorAPI\MockSpriteCreatorAPI.csproj", "{E95DCB83-81A1-4D3B-83D1-370204D3C103}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MockSpriteCreatorTest", "MockSpriteCreatorTest\MockSpriteCreatorTest.csproj", "{63C56FE5-592B-4036-8B0F-936B747000D0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +15,10 @@ Global
 		{E95DCB83-81A1-4D3B-83D1-370204D3C103}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E95DCB83-81A1-4D3B-83D1-370204D3C103}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E95DCB83-81A1-4D3B-83D1-370204D3C103}.Release|Any CPU.Build.0 = Release|Any CPU
+		{63C56FE5-592B-4036-8B0F-936B747000D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63C56FE5-592B-4036-8B0F-936B747000D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63C56FE5-592B-4036-8B0F-936B747000D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63C56FE5-592B-4036-8B0F-936B747000D0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
