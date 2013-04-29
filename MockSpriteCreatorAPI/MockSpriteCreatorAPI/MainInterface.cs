@@ -47,7 +47,7 @@ namespace MockSpriteCreatorAPI
                 sprite.SpriteWidth, sprite.SpriteHeight);
             Font font = new Font("Courier", 12, FontStyle.Bold, GraphicsUnit.Point);
 
-            int distanceFromLeft = (sprite.SpriteWidth / 2) - (spriteString.Length * 10 / 2);
+            int distanceFromLeft = (sprite.SpriteWidth / 2) - (sprite.SpriteName.Length * 10 / 2);
             int distanceFromTop = (sprite.SpriteHeight / 2) - font.Height / 2;
 
             Bitmap generatedSprite = new Bitmap(sprite.SpriteWidth, sprite.SpriteHeight);
