@@ -36,11 +36,17 @@ namespace MockSpriteCreatorAPI
         public static string GenerateSprite(Sprite sprite)
         {
             // Check Preconditions
-            Contract.Requires(sprite.SpriteName != null);
-            Contract.Requires(sprite.SpriteWidth > 0);
-            Contract.Requires(sprite.SpriteHeight > 0);
+            Contract.Requires(sprite.SpriteName != null, "Error: SpriteName cannot be null.");
+            Contract.Requires(sprite.SpriteWidth > 0, "Error: SpriteWidth must be greater than 0.");
+            Contract.Requires(sprite.SpriteHeight > 0, "Error: SpriteHeight must be greater than 0.");
 
-            //TODO: Generate filename based on parameters
+            // Generate filename passed on parameters, replacing spaces with underscores
+            string filename = "mock_" + sprite.SpriteName.Replace(" ", "_") +
+                "_" + sprite.SpriteWidth + "x" + sprite.SpriteHeight + ".png";
+
+            // Fail fast if there's a chance the filename will be too long
+            Contract.Assert(filename.Length < 128, "Error: Filename too long.");
+
             //TODO: Check if file with filename already exists
 
             string spriteString = string.Format("{0}\n{1}x{2}", sprite.SpriteName,
@@ -58,7 +64,7 @@ namespace MockSpriteCreatorAPI
                 distanceFromLeft, distanceFromTop);
             graphicsObject.Flush();
             string folderPath = System.IO.Directory.CreateDirectory(@"C:\Images").FullName; //TODO: Change to relative folder
-            string absolutePath = folderPath + @"\test.png"; //TODO: Set name based on parameters
+            string absolutePath = folderPath + "\\" + filename;
             generatedSprite.Save(absolutePath, ImageFormat.Png);
             return absolutePath;
         }
