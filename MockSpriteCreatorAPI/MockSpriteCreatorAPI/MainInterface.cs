@@ -1,26 +1,24 @@
 ﻿#region Licence
 
-/************************************************************************
-Copyright (c) 2013 Thomas Geraghty
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
-/************************************************************************/
+// Copyright (c) 2013 Thomas Geraghty
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
 
 #endregion Licence
 
@@ -49,27 +47,27 @@ namespace MockSpriteCreatorAPI
 
             //TODO: Check if file with filename already exists
 
-            string spriteString = string.Format("{0}\n{1}x{2}", sprite.SpriteName,
+            var spriteString = string.Format("{0}\n{1}x{2}", sprite.SpriteName,
                 sprite.SpriteWidth, sprite.SpriteHeight);
-            Font font = new Font("Courier", 12, FontStyle.Bold, GraphicsUnit.Point);
+            var font = new Font("Courier", 12, FontStyle.Bold, GraphicsUnit.Point);
 
-            int distanceFromLeft = (sprite.SpriteWidth / 2) - (sprite.SpriteName.Length * 10 / 2);
-            int distanceFromTop = (sprite.SpriteHeight / 2) - font.Height / 2;
+            var distanceFromLeft = (sprite.SpriteWidth / 2) - (sprite.SpriteName.Length * 10 / 2);
+            var distanceFromTop = (sprite.SpriteHeight / 2) - font.Height / 2;
 
-            Bitmap generatedSprite = new Bitmap(sprite.SpriteWidth, sprite.SpriteHeight);
+            var generatedSprite = new Bitmap(sprite.SpriteWidth, sprite.SpriteHeight);
             Graphics graphicsObject = Graphics.FromImage(generatedSprite);
             graphicsObject.Clear(Color.CornflowerBlue); //TODO: Allow changing this
             graphicsObject.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
             graphicsObject.DrawString(spriteString, font, new SolidBrush(Color.Black),
                 distanceFromLeft, distanceFromTop);
             graphicsObject.Flush();
-            string folderPath = System.IO.Directory.CreateDirectory(@"C:\Images").FullName; //TODO: Change to relative folder
-            string absolutePath = folderPath + "\\" + filename;
+            var folderPath = System.IO.Directory.CreateDirectory(@"C:\Images").FullName; //TODO: Change to relative folder
+            var absolutePath = folderPath + "\\" + filename;
             generatedSprite.Save(absolutePath, ImageFormat.Png);
             return absolutePath;
         }
 
-        private static void Main(string[] args)
+        private static void Main()
         {
             Console.WriteLine("Sprite created at: " + GenerateSprite(new Sprite("Test Sprite", 300, 300)) +
                 ".\nPress any key to exit.");
