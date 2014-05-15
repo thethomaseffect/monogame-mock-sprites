@@ -3,6 +3,8 @@ monogame-mock-sprites
 
 A library that allows the creation of mock sprites for use in rapid games development in situations where the developer does not access to art assets.
 
+_Note:_ I no longer develop using Monogame so this small prototype will never be anything more. I may someday implement a JavaScript version.
+
 Licenced under the MIT licence.
 
 The MIT License (MIT)
